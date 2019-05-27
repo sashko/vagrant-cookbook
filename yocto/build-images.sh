@@ -29,6 +29,10 @@ IMAGES="$2"
 echo "================================================================================================"
 echo "BitBake'ing $IMAGES in $YOCTO_DIR"
 
+rev=`git describe`
+sed 's/DISTRO_VERSION/"$rev"/g' $YOCTO_DIR/sources/meta-pelux/recipes-core/os-release/os-release.bbappend
+echo $YOCTO_DIR/sources/meta-pelux/recipes-core/os-release/os-release.bbappend
+
 # Set up bitbake environment
 cd "$YOCTO_DIR/sources/poky/"
 source oe-init-build-env ../../build
